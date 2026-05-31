@@ -17,7 +17,8 @@
 
     /* NAV */
     nav { display:flex; align-items:center; justify-content:space-between; padding:20px 48px; background:var(--surface); border-bottom:1px solid var(--border); position:sticky; top:0; z-index:100; }
-    .nav-logo { font-family:'Playfair Display',serif; font-size:22px; letter-spacing:-0.01em; }
+    .nav-logo { font-family:'Playfair Display',serif; font-size:22px; letter-spacing:-0.01em; display:flex; align-items:center; gap:10px; }
+    .nav-logo svg { width:28px; height:28px; background:#080808; border-radius:6px; padding:3px; }
     .nav-links { display:flex; gap:32px; align-items:center; }
     .nav-links a { color:var(--muted); font-size:13px; text-decoration:none; text-transform:uppercase; letter-spacing:0.08em; transition:color .2s; }
     .nav-links a:hover { color:var(--text); }
@@ -187,7 +188,16 @@
 <body>
 
 <nav>
-  <div class="nav-logo">Daphnie App</div>
+  <div class="nav-logo">
+    <svg viewBox="0 0 100 100" xmlns="http://w3.org">
+      <ellipse cx="38" cy="62" rx="10" ry="7" transform="rotate(-25 38 62)" fill="#c8ff00"/>
+      <ellipse cx="62" cy="54" rx="10" ry="7" transform="rotate(-25 62 54)" fill="#c8ff00"/>
+      <line x1="47" y1="58" x2="47" y2="35" stroke="#c8ff00" stroke-width="3.5" stroke-linecap="round"/>
+      <line x1="71" y1="50" x2="71" y2="27" stroke="#c8ff00" stroke-width="3.5" stroke-linecap="round"/>
+      <line x1="47" y1="35" x2="71" y2="27" stroke="#c8ff00" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+    Daphnie App
+  </div>
   <div class="nav-links">
     <a href="#dashboard">Dashboard</a>
     <a href="#upload">Upload</a>
