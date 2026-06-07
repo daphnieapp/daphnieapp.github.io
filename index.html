@@ -216,11 +216,11 @@
 <nav>
   <div class="nav-logo">Daphnie App</div>
   <div class="nav-links">
-    <a href="#post">Post to TikTok</a>
+    <a href="#post">Post to Socials</a>
     <a href="#connect">Connect</a>
     <a href="privacy-policy.html">Privacy</a>
     <a href="terms-of-service.html">Terms</a>
-    <a href="#connect" class="nav-cta">Get Started</a>
+    <a href="#connect" class="nav-cta">Connect Accounts</a>
   </div>
 </nav>
 
@@ -229,18 +229,18 @@
   <div class="hero-left">
     <div class="hero-eyebrow">Music Distribution Platform</div>
     <h1>Post once.<br><em>Reach everywhere.</em></h1>
-    <p class="hero-sub">Daphnie App automatically distributes your original music videos to TikTok, Instagram Reels, and YouTube Shorts — twice a day, every day.</p>
+    <p class="hero-sub">Daphnie App distributes your original music videos to TikTok, Instagram Reels, and YouTube Shorts — automatically, on your schedule.</p>
     <div class="hero-actions">
       <a href="#connect" class="btn-dark">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.31 6.31 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
-        Connect TikTok
+        Connect Your Socials
       </a>
       <a href="#post" class="btn-outline">See how it works</a>
     </div>
   </div>
   <div class="hero-right">
     <div class="stat-grid">
-      <div class="stat-box"><div class="stat-num">2×</div><div class="stat-label">Daily posts</div></div>
+      <div class="stat-box"><div class="stat-num">∞</div><div class="stat-label">Posts scheduled</div></div>
       <div class="stat-box"><div class="stat-num">3</div><div class="stat-label">Platforms</div></div>
       <div class="stat-box"><div class="stat-num">0</div><div class="stat-label">Manual steps</div></div>
       <div class="stat-box"><div class="stat-num">100%</div><div class="stat-label">Original quality</div></div>
@@ -266,12 +266,12 @@
 <!-- POST TO TIKTOK -->
 <div class="section-bg" id="post">
   <div class="section" style="max-width:1100px;">
-    <div class="section-eyebrow">Post to TikTok</div>
+    <div class="section-eyebrow">Post to Socials</div>
     <h2 class="section-title">Upload and publish your video</h2>
     <div class="app-shell">
       <div class="app-titlebar">
         <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
-        <div class="titlebar-url">daphnieapp.github.io/daphnie-app</div>
+        <div class="titlebar-url">daphnieapp.github.io</div>
       </div>
       <div class="app-body">
         <div class="app-sidebar">
@@ -307,8 +307,8 @@
                 <span class="drop-icon">📋</span>
                 <h4>Drop schedule CSV here</h4>
                 <p>Captions, hashtags, post times</p>
-                <button class="btn-sm-outline" onclick="downloadTemplate(event)">⬇ Download Template</button>
-                <button class="btn-sm" style="margin-left:6px" onclick="document.querySelector('#csvZone input').click();event.stopPropagation()">Upload CSV</button>
+                <button class="btn-sm-outline" id="dlBtn" onclick="downloadTemplate(event);return false;">⬇ Download Template</button>
+                <button class="btn-sm" style="margin-left:6px" onclick="event.stopPropagation();document.querySelector('#csvZone input').click();">Upload CSV</button>
                 <div class="file-added" id="csvAdded" style="display:none"></div>
               </div>
             </div>
@@ -320,10 +320,12 @@
 
             <!-- Creator info (from creator_info API) -->
             <div class="creator-info-bar">
-              <div class="creator-avatar">🎵</div>
+              <div style="width:40px;height:40px;border-radius:50%;overflow:hidden;flex-shrink:0;background:#111;border:2px solid var(--border);">
+                <img id="creatorAvatar" src="https://ui-avatars.com/api/?name=Daphnie&background=c8f53a&color=000&size=40&bold=true" style="width:100%;height:100%;object-fit:cover;" alt="Profile">
+              </div>
               <div class="creator-details">
-                <div class="creator-name">Daphnie</div>
-                <div class="creator-handle">@probablydaphnie</div>
+                <div class="creator-name" id="creatorName">Daphnie</div>
+                <div class="creator-handle" id="creatorHandle">@probablydaphnie</div>
               </div>
               <div class="creator-status">✓ Ready to post</div>
             </div>
@@ -385,9 +387,12 @@
               </div>
             </div>
 
-            <!-- Platform-specific settings -->
-            <div style="height:1px;background:var(--border);margin:20px 0;"></div>
+            <div class="form-group">
+              <label class="form-label">First Comment <span style="color:var(--muted);font-size:10px">posted on all platforms after publishing</span></label>
+              <input type="text" class="form-input" id="commentInput" placeholder="e.g. What's your favourite crash out song?">
+            </div>
 
+            <div style="height:1px;background:var(--border);margin:20px 0;"></div>
             <div class="form-group">
               <label class="form-label" style="font-size:13px;text-transform:none;letter-spacing:0;color:var(--text);font-weight:500;margin-bottom:12px;display:flex;align-items:center;gap:8px;">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.31 6.31 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
@@ -549,31 +554,31 @@
 <section class="connect-section" id="connect">
   <div class="connect-inner">
     <div class="connect-text">
-      <div class="section-eyebrow">Step 1 — Account setup</div>
-      <h2>Connect your TikTok account</h2>
-      <p>To enable automatic publishing, connect your TikTok account. You'll be taken to TikTok to log in and approve access — then redirected straight back here.</p>
+      <div class="section-eyebrow">Account Setup</div>
+      <h2>Connect your accounts</h2>
+      <p>Connect your TikTok, Instagram, and YouTube accounts to enable automatic publishing across all three platforms. TikTok connects via OAuth — Instagram and YouTube are managed through their respective developer consoles.</p>
       <ul class="perm-list">
         <li>
           <div class="perm-icon">🎵</div>
-          <div class="perm-text"><strong>Publish videos to your account</strong><span>Posts your original music video clips to your TikTok profile on a scheduled basis.</span></div>
+          <div class="perm-text"><strong>Publish videos to all platforms</strong><span>Posts your original music video clips to TikTok, Instagram Reels, and YouTube Shorts on your schedule.</span></div>
         </li>
         <li>
           <div class="perm-icon">🔒</div>
-          <div class="perm-text"><strong>Verify your identity</strong><span>Confirms which TikTok account you're connecting. No personal data is stored or shared.</span></div>
+          <div class="perm-text"><strong>Verify your identity</strong><span>Confirms which account you're connecting on each platform. No personal data is stored or shared.</span></div>
         </li>
         <li>
           <div class="perm-icon">🚫</div>
-          <div class="perm-text"><strong>What we don't access</strong><span>We never read your messages, follower list, analytics, or any data beyond what's needed to post.</span></div>
+          <div class="perm-text"><strong>What we don't access</strong><span>We never read your messages, follower lists, analytics, or any data beyond what's needed to publish your content.</span></div>
         </li>
       </ul>
-      <p style="font-size:12px;color:var(--muted);">Disconnect at any time via TikTok Settings → Security → Authorised Apps.</p>
+      <p style="font-size:12px;color:var(--muted);">Disconnect at any time: TikTok → Settings → Security → Authorised Apps. Instagram → Settings → Apps and Websites. YouTube → Google Account → Security → Third-party apps.</p>
     </div>
     <div class="connect-card">
       <div class="card-icon">
         <svg viewBox="0 0 24 24" fill="#c8ff00"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.31 6.31 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
       </div>
       <h3>Daphnie App</h3>
-      <p>Connect your TikTok account to start publishing your music automatically.</p>
+      <p>Connect TikTok, Instagram, and YouTube to start publishing your music automatically across all platforms.</p>
       <div style="border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:10px;">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
           <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;">
@@ -596,8 +601,9 @@
           </div>
           <span style="font-size:11px;color:#16a34a;font-family:monospace;">&#10003; Connected</span>
         </div>
-        <button onclick="alert('Instagram is connected via Meta Business — manage from Meta Business Suite.')" style="width:100%;background:#E1306C;color:#fff;border:none;border-radius:6px;padding:10px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;">
-          Manage Instagram Connection
+        <button id="igConnectBtn" onclick="alert('Instagram is connected via your Meta Business account. To reconnect, visit Meta Business Suite.')" style="width:100%;background:#E1306C;color:#fff;border:none;border-radius:8px;padding:12px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:10px;">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px;"><path d="M12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          ✓ Instagram Connected
         </button>
       </div>
 
@@ -609,13 +615,14 @@
           </div>
           <span style="font-size:11px;color:#16a34a;font-family:monospace;">&#10003; Connected</span>
         </div>
-        <button onclick="alert('YouTube is connected via Google OAuth — manage from your Google account settings.')" style="width:100%;background:#FF0000;color:#fff;border:none;border-radius:6px;padding:10px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;">
-          Manage YouTube Connection
+        <button id="ytConnectBtn" onclick="alert('YouTube is connected via your Google account. To reconnect, visit Google Account Security settings.')" style="width:100%;background:#FF0000;color:#fff;border:none;border-radius:8px;padding:12px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:10px;">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px;"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          ✓ YouTube Connected
         </button>
       </div>
 
       <p class="connect-fine" style="margin-top:14px;">By connecting, you authorise Daphnie App to publish original music videos to your accounts. Disconnect at any time from each platform's settings.</p>
-      <div class="connect-success" id="connectSuccess">&#10003; TikTok account connected successfully!</div>
+      <div class="connect-success" id="connectSuccess">&#10003; Account connected successfully!</div>
     </div>
   </div>
 </section>
