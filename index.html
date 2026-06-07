@@ -220,7 +220,6 @@
     <a href="#connect">Connect</a>
     <a href="privacy-policy.html">Privacy</a>
     <a href="terms-of-service.html">Terms</a>
-    <a href="#connect" class="nav-cta">Connect Accounts</a>
   </div>
 </nav>
 
@@ -307,7 +306,7 @@
                 <span class="drop-icon">📋</span>
                 <h4>Drop schedule CSV here</h4>
                 <p>Captions, hashtags, post times</p>
-                <button class="btn-sm-outline" id="dlBtn" onclick="downloadTemplate(event);return false;">⬇ Download Template</button>
+                <a class="btn-sm-outline" id="dlBtn" href="#" onclick="downloadTemplate(event);return false;" style="display:inline-block;text-decoration:none;">⬇ Download Template</a>
                 <button class="btn-sm" style="margin-left:6px" onclick="event.stopPropagation();document.querySelector('#csvZone input').click();">Upload CSV</button>
                 <div class="file-added" id="csvAdded" style="display:none"></div>
               </div>
@@ -556,7 +555,7 @@
     <div class="connect-text">
       <div class="section-eyebrow">Account Setup</div>
       <h2>Connect your accounts</h2>
-      <p>Connect your TikTok, Instagram, and YouTube accounts to enable automatic publishing across all three platforms. TikTok connects via OAuth — Instagram and YouTube are managed through their respective developer consoles.</p>
+      <p>Connect your TikTok, Instagram, and YouTube accounts to enable automatic publishing across all three platforms. </p>
       <ul class="perm-list">
         <li>
           <div class="perm-icon">🎵</div>
@@ -622,7 +621,6 @@
       </div>
 
       <p class="connect-fine" style="margin-top:14px;">By connecting, you authorise Daphnie App to publish original music videos to your accounts. Disconnect at any time from each platform's settings.</p>
-      <div class="connect-success" id="connectSuccess">&#10003; Account connected successfully!</div>
     </div>
   </div>
 </section>
@@ -693,13 +691,24 @@
   }
 
   function downloadTemplate(e) {
-    e.stopPropagation();
-    const csv = [
+    if (e) { e.preventDefault(); e.stopPropagation(); }
+    const rows = [
       'Date,Time,song_name,Text,Youtube Video Title,TikTok Title,First Comment Text,Youtube Video Privacy,TikTok Post Privacy,TikTok disable comments,TikTok disable duet,TikTok disable stitch,reel_type,posted,posted_at,video_path,platforms_done',
       '2026/06/01,09:30,28,"Mid crash out. 28 by Daphnie #indierock #altrock #indiepop #electro #synthpop","Mid crash out. 28 by Daphnie #indierock #altrock #indiepop","Mid crash out. 28 by Daphnie #indierock #altrock","What\'s your favourite crash out song?",public,PUBLIC_TO_EVERYONE,FALSE,FALSE,FALSE,TRIAL,false,,28_video.mp4,',
-    ].join('\r\n');
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(new Blob([csv], {type:'text/csv'}));
+      '2026/06/01,20:30,Alive,"For if you need to revamp your aura. Alive (not dead) by Daphnie #indiepop #altpop","For if you need to revamp your aura. Alive (not dead) by Daphnie","For if you need to revamp your aura. Alive (not dead) by Daphnie","What is your aura today?",public,PUBLIC_TO_EVERYONE,FALSE,FALSE,FALSE,TRIAL,false,,alive_video.mp4,',
+    ];
+    const csv = rows.join('\r\n');
+    const blob = new Blob([csv], {type: 'text/csv;charset=utf-8;'});
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.setAttribute('href', url);
+    a.setAttribute('download', 'daphnie-schedule-template.csv');
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    return false;
+  }));
     a.download = 'daphnie-schedule-template.csv';
     a.click();
   }
