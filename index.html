@@ -217,7 +217,6 @@
   <div class="nav-logo">Daphnie App</div>
   <div class="nav-links">
     <a href="#post">Post to Socials</a>
-    <a href="#connect">Connect</a>
     <a href="privacy-policy.html">Privacy</a>
     <a href="terms-of-service.html">Terms</a>
     <a href="#connect" class="nav-cta">Connect Accounts</a>
@@ -344,46 +343,6 @@
               <div class="form-group" style="grid-column:1/-1">
                 <label class="form-label">Title / Caption <span style="color:var(--muted);font-size:10px">(editable)</span></label>
                 <textarea class="form-input" id="titleInput" rows="3" placeholder="Write your caption here with #hashtags"></textarea>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Privacy Status <span style="color:var(--red);font-size:10px">* required</span></label>
-                <select class="form-select" id="privacySelect">
-                  <option value="" disabled selected>Select privacy...</option>
-                  <option value="PUBLIC_TO_EVERYONE">Public — Everyone</option>
-                  <option value="MUTUAL_FOLLOW_FRIENDS">Friends only</option>
-                  <option value="SELF_ONLY">Private — Only me</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label class="form-label">First Comment <span style="color:var(--muted);font-size:10px">(optional)</span></label>
-                <input type="text" class="form-input" id="commentInput" placeholder="Add a first comment...">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label">Interaction Settings <span style="color:var(--muted);font-size:10px">— none selected by default</span></label>
-              <div class="checkbox-group">
-                <label class="checkbox-item">
-                  <input type="checkbox" id="allowComment">
-                  <div class="checkbox-text">
-                    <div class="checkbox-label">Allow Comments</div>
-                    <div class="checkbox-sublabel">Viewers can comment on your video</div>
-                  </div>
-                </label>
-                <label class="checkbox-item">
-                  <input type="checkbox" id="allowDuet">
-                  <div class="checkbox-text">
-                    <div class="checkbox-label">Allow Duet</div>
-                    <div class="checkbox-sublabel">Viewers can create a duet with your video</div>
-                  </div>
-                </label>
-                <label class="checkbox-item">
-                  <input type="checkbox" id="allowStitch">
-                  <div class="checkbox-text">
-                    <div class="checkbox-label">Allow Stitch</div>
-                    <div class="checkbox-sublabel">Viewers can use clips from your video</div>
-                  </div>
-                </label>
               </div>
             </div>
 
@@ -556,7 +515,7 @@
     <div class="connect-text">
       <div class="section-eyebrow">Account Setup</div>
       <h2>Connect your accounts</h2>
-      <p>Connect your TikTok, Instagram, and YouTube accounts to enable automatic publishing across all three platforms. TikTok connects via OAuth — Instagram and YouTube are managed through their respective developer consoles.</p>
+      <p>Connect your TikTok, Instagram, and YouTube accounts to enable automatic publishing across all three platforms.</p>
       <ul class="perm-list">
         <li>
           <div class="perm-icon">🎵</div>
