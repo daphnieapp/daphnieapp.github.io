@@ -306,7 +306,7 @@
                 <span class="drop-icon">📋</span>
                 <h4>Drop schedule CSV here</h4>
                 <p>Captions, hashtags, post times</p>
-                <button class="btn-sm-outline" id="dlBtn" onclick="downloadTemplate(event)">⬇ Download Template</button>
+                <button class="btn-sm-outline" id="dlBtn" onclick="downloadTemplate(event); event.stopPropagation();">⬇ Download Template</button>
                 <button class="btn-sm" style="margin-left:6px" onclick="event.stopPropagation();document.querySelector('#csvZone input').click();">Upload CSV</button>
                 <div class="file-added" id="csvAdded" style="display:none"></div>
               </div>
@@ -647,7 +647,10 @@
   }
 
   function downloadTemplate(e) {
-    e.stopPropagation();
+    if (e) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
     const csv = [
       'Date,Time,song_name,Text,Youtube Video Title,TikTok Title,First Comment Text,Youtube Video Privacy,TikTok Post Privacy,TikTok disable comments,TikTok disable duet,TikTok disable stitch,reel_type,posted,posted_at,video_path,platforms_done',
       '2026/06/01,09:30,28,"Mid crash out. 28 by Daphnie #indierock #altrock #indiepop #electro #synthpop","Mid crash out. 28 by Daphnie #indierock #altrock #indiepop","Mid crash out. 28 by Daphnie #indierock #altrock","What\'s your favourite crash out song?",public,PUBLIC_TO_EVERYONE,FALSE,FALSE,FALSE,TRIAL,false,,28_video.mp4,',
