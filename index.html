@@ -393,20 +393,14 @@
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.31 6.31 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
                 TikTok Settings
               </label>
-              <div class="form-grid">
-                <div class="form-group">
-                  <label class="form-label">Privacy Status <span style="color:var(--red);font-size:10px">* required</span></label>
-                  <select class="form-select" id="privacySelect">
-                    <option value="" disabled selected>Select privacy...</option>
-                    <option value="PUBLIC_TO_EVERYONE">Public</option>
-                    <option value="MUTUAL_FOLLOW_FRIENDS">Friends only</option>
-                    <option value="SELF_ONLY">Private</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label class="form-label">First Comment</label>
-                  <input type="text" class="form-input" id="commentInput" placeholder="Add a first comment...">
-                </div>
+              <div class="form-group">
+                <label class="form-label">Privacy Status <span style="color:var(--red);font-size:10px">* required</span></label>
+                <select class="form-select" id="privacySelect">
+                  <option value="" disabled selected>Select privacy...</option>
+                  <option value="PUBLIC_TO_EVERYONE">Public</option>
+                  <option value="MUTUAL_FOLLOW_FRIENDS">Friends only</option>
+                  <option value="SELF_ONLY">Private</option>
+                </select>
               </div>
               <label class="form-label">Interactions — none enabled by default</label>
               <div class="checkbox-group">
@@ -443,10 +437,7 @@
                 <label class="form-label">Instagram Caption <span style="color:var(--muted);font-size:10px">leave blank to use TikTok caption</span></label>
                 <textarea class="form-input" id="igCaption" rows="2" placeholder="Optional separate caption for Instagram..."></textarea>
               </div>
-              <div class="form-group">
-                <label class="form-label">Instagram First Comment</label>
-                <input type="text" class="form-input" id="igComment" placeholder="Optional separate first comment...">
-              </div>
+
             </div>
 
             <div style="height:1px;background:var(--border);margin:20px 0;"></div>
@@ -465,10 +456,7 @@
                     <option value="private">Private</option>
                   </select>
                 </div>
-                <div class="form-group">
-                  <label class="form-label">YouTube First Comment</label>
-                  <input type="text" class="form-input" id="ytComment" placeholder="Optional first comment...">
-                </div>
+
               </div>
               <div class="form-group">
                 <label class="form-label">YouTube Title <span style="color:var(--muted);font-size:10px">leave blank to use TikTok caption (max 100 chars)</span></label>
@@ -586,12 +574,48 @@
       </div>
       <h3>Daphnie App</h3>
       <p>Connect your TikTok account to start publishing your music automatically.</p>
-      <a class="tiktok-btn" href="#" id="tiktokLoginBtn" onclick="doLogin(event)">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.31 6.31 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
-        Continue with TikTok
-      </a>
-      <p class="connect-fine">By connecting, you authorise Daphnie App to publish original music videos to your TikTok account. You can disconnect at any time.</p>
-      <div class="connect-success" id="connectSuccess">✓ TikTok account connected successfully!</div>
+      <div style="border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:10px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.31 6.31 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+            TikTok
+          </div>
+          <span id="ttConnectStatus" style="font-size:11px;color:var(--muted);font-family:monospace;">Not connected</span>
+        </div>
+        <a class="tiktok-btn" href="#" id="tiktokLoginBtn" onclick="doLogin(event)" style="padding:10px;font-size:13px;">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="width:14px;height:14px;"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.31 6.31 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+          Connect with TikTok
+        </a>
+      </div>
+
+      <div style="border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-top:10px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#E1306C"><path d="M12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            Instagram
+          </div>
+          <span style="font-size:11px;color:#16a34a;font-family:monospace;">&#10003; Connected</span>
+        </div>
+        <button onclick="alert('Instagram is connected via Meta Business — manage from Meta Business Suite.')" style="width:100%;background:#E1306C;color:#fff;border:none;border-radius:6px;padding:10px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;">
+          Manage Instagram Connection
+        </button>
+      </div>
+
+      <div style="border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-top:10px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+          <div style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            YouTube
+          </div>
+          <span style="font-size:11px;color:#16a34a;font-family:monospace;">&#10003; Connected</span>
+        </div>
+        <button onclick="alert('YouTube is connected via Google OAuth — manage from your Google account settings.')" style="width:100%;background:#FF0000;color:#fff;border:none;border-radius:6px;padding:10px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;">
+          Manage YouTube Connection
+        </button>
+      </div>
+
+      <p class="connect-fine" style="margin-top:14px;">By connecting, you authorise Daphnie App to publish original music videos to your accounts. Disconnect at any time from each platform's settings.</p>
+      <div class="connect-success" id="connectSuccess">&#10003; TikTok account connected successfully!</div>
     </div>
   </div>
 </section>
@@ -606,7 +630,7 @@
 
 <script>
   const CLIENT_KEY = 'aw2r9f2oaloc9vpu';
-  const REDIRECT   = 'https://daphnieapp.github.io/daphnie-app/';
+  const REDIRECT   = 'https://daphnieapp.github.io/';
   let videoReady = false, csvReady = false, disclosureOn = false;
 
   // ── Step navigation ───────────────────────────────────────────────────────
